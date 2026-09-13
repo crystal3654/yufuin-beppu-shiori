@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>修学旅行のしおり｜湯布院・別府</title>
+<style>html,body,iframe{margin:0;width:100%;height:100%;border:0;background:#e9ecef}iframe{display:block}</style>
+</head>
+<body>
+<iframe id="book" src="version3-latest.html?v=202609131845" title="修学旅行のしおり"></iframe>
+<script>
+const frame=document.getElementById('book');
+const SLOGAN='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png';
+const HEALTH='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/B324BFD1-65A3-4653-8D1D-3AE27DB8DDB5.jpeg';
+function patch(){
+  try{
+    const d=frame.contentDocument;
+    if(!d) return;
+    const cover=d.querySelector('.cover');
+    if(cover){
+      const dds=[...cover.querySelectorAll('.cover-meta dd')];
+      if(dds[2]) dds[2].textContent='安全第一・だいたい時間厳守・だいたい現地判断';
+      if(!d.getElementById('slogan')){
+        const section=d.createElement('section'); section.className='sheet'; section.id='slogan';
+        section.innerHTML='<div style="text-align:center;margin-bottom:10px;font-size:11px;letter-spacing:.14em;color:#66727c;font-weight:800;">TRAVEL SLOGAN</div><img src="'+SLOGAN+'" alt="考えるより感じろ" style="display:block;width:100%;height:auto;border-radius:4px;background:#f8f7f3;">';
+        cover.insertAdjacentElement('afterend',section);
+      }
+    }
+    const purpose=d.getElementById('purpose');
+    if(purpose && !purpose.dataset.shortened){
+      const ps=[...purpose.querySelectorAll(':scope > p')]; [5,7,8,9].forEach(i=>{if(ps[i]) ps[i].remove();}); purpose.dataset.shortened='true';
+    }
+    const rows=[...d.querySelectorAll('.row')];
+    const wake=rows.find(r=>r.querySelector('.time')?.textContent.trim()==='8:00'&&r.querySelector('h3')?.textContent.trim()==='起床');
+    if(wake){ const p=wake.querySelector('p'); if(p) p.textContent='9:30出発に向けて身支度。二度寝した場合は、自力で時間を取り戻すこと。'; }
+    const health=rows.find(r=>r.querySelector('.time')?.textContent.trim()==='8:15'&&r.querySelector('h3')?.textContent.trim()==='体調確認');
+    if(health&&!d.getElementById('health-check-ill')){
+      const detail=health.querySelector('.detail'); const img=d.createElement('img'); img.id='health-check-ill'; img.src=HEALTH+'?v=202609131845'; img.alt='体調確認の挿絵'; img.style.cssText='display:block;width:110px;max-width:42%;height:auto;float:right;margin:0 0 6px 10px;border-radius:4px;filter:none;opacity:1;'; detail.insertBefore(img,detail.firstChild); const clear=d.createElement('div'); clear.style.clear='both'; detail.appendChild(clear);
+    }
+  }catch(e){}
+}
+frame.addEventListener('load',()=>{patch();});
+setInterval(patch,200);
+</script>
+</body>
+</html>
