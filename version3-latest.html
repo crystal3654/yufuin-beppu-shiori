@@ -11,6 +11,26 @@
 (async()=>{
   const html=await (await fetch('version3.html',{cache:'no-store'})).text();
   const doc=new DOMParser().parseFromString(html,'text/html');
+
+  const cover=doc.querySelector('.cover');
+  if(cover){
+    const purpose=doc.createElement('section');
+    purpose.className='sheet';
+    purpose.id='purpose';
+    purpose.innerHTML=`
+      <div class="head"><h2>旅の目的</h2><div class="area">本旅行の実施意義<br>および到達目標</div></div>
+      <p style="font-size:12px;line-height:1.9;color:#53606a;margin:0 0 11px;">
+        本旅行は、日常生活圏を一時的に離れ、湯布院および別府における観光、食事、宿泊、移動その他一連の共同体験を通じて、参加者相互の親睦を深めるとともに、限られた時間、体力、胃容量および判断力の範囲内で、その都度もっとも妥当と思われる選択を行う実践的能力を養うことを目的とする。
+      </p>
+      <p style="font-size:12px;line-height:1.9;color:#53606a;margin:0 0 11px;">
+        また、渋滞、眠気、満腹、予定変更、忘れ物、思ったより歩く、思ったより疲れる等の旅行特有の不確定要素に対し、過度に取り乱すことなく、必要に応じて「まあ旅行なので」という社会的に便利な合意形成手段を活用しながら、平和的かつ柔軟に対処する力を身につけるものとする。あわせて、運転者への感謝、食事候補に対する建設的な意見表明、集合時刻の遵守、充電残量の管理等を通じ、成人として最低限必要とされる協調性および良識の維持向上を図る。
+      </p>
+      <p style="font-size:12px;line-height:1.9;color:#53606a;margin:0;">
+        さらに、写真等による記録を適度に残し、帰宅後に「結局どこ行ったっけ」となる事態を防止するとともに、行程の一部が予定どおり進まなかった場合においても、それを失敗ではなく将来の会話材料として再評価できる精神的余裕を確保する。最終的には、参加者全員が大きな問題なく帰宅し、数日後に本旅行を思い出して笑える状態に至った時点をもって、本旅行の目的は概ね達成されたものとみなす。
+      </p>`;
+    cover.insertAdjacentElement('afterend',purpose);
+  }
+
   const pack=doc.querySelector('.pack');
   if(pack){
     const items=[...pack.children];
