@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>修学旅行のしおり｜湯布院・別府</title>
+<style>html,body{margin:0;background:#e9ecef;color:#26323d;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif}body:before{content:"しおりを読み込み中…";display:block;padding:40px 20px;text-align:center;color:#66727c;font-size:13px}</style>
+</head>
+<body>
+<script>
+(async()=>{
+  const html=await (await fetch('version3.html',{cache:'no-store'})).text();
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const pack=doc.querySelector('.pack');
+  if(pack){
+    const items=[...pack.children];
+    if(items.length>=11){
+      const order=[0,1,2,3,4,8,9,10,5,6,7];
+      order.forEach(i=>pack.appendChild(items[i]));
+    }
+  }
+  const ver=doc.querySelector('.version');
+  if(ver) ver.textContent='VERSION 3 / LATEST';
+  doc.querySelectorAll('script').forEach(s=>s.remove());
+  document.head.innerHTML=doc.head.innerHTML;
+  document.body.innerHTML=doc.body.innerHTML;
+  const names=['group_trip','excited','travel_guide','happy_man','discussion'];
+  const ill={};
+  await Promise.all(names.map(async n=>{
+    const b64=(await (await fetch(`assets/${n}.b64`)).text()).trim();
+    ill[n]=`data:image/webp;base64,${b64}`;
+  }));
+  document.querySelectorAll('img[data-ill]').forEach(img=>{img.src=ill[img.dataset.ill]||'';});
+})();
+</script>
+</body>
+</html>
