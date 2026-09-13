@@ -7,64 +7,46 @@
 <style>html,body,iframe{margin:0;width:100%;height:100%;border:0;background:#e9ecef}iframe{display:block}</style>
 </head>
 <body>
-<iframe id="book" src="version3-latest.html?v=202609131340" title="修学旅行のしおり"></iframe>
+<iframe id="book" src="version3-latest.html?v=202609131500" title="修学旅行のしおり"></iframe>
 <script>
 const frame=document.getElementById('book');
-const IMG='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png';
-const HEALTH_IMG='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/B324BFD1-65A3-4653-8D1D-3AE27DB8DDB5.jpeg';
+const SLOGAN='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png';
+const HEALTH='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/B324BFD1-65A3-4653-8D1D-3AE27DB8DDB5.jpeg';
 
-function insertExtras(){
+function ensureExtras(){
   const d=frame.contentDocument;
-  if(!d) return false;
+  if(!d) return;
 
   const cover=d.querySelector('.cover');
-  if(!cover) return false;
-
-  if(!d.getElementById('slogan')){
+  if(cover && !d.getElementById('slogan')){
     const section=d.createElement('section');
     section.className='sheet';
     section.id='slogan';
-    section.innerHTML=`<div style="text-align:center;margin-bottom:10px;font-size:11px;letter-spacing:.14em;color:#66727c;font-weight:800;">TRAVEL SLOGAN</div><img src="${IMG}" alt="考えるより感じろ" style="display:block;width:100%;height:auto;border-radius:4px;background:#f8f7f3;">`;
+    section.innerHTML='<div style="text-align:center;margin-bottom:10px;font-size:11px;letter-spacing:.14em;color:#66727c;font-weight:800;">TRAVEL SLOGAN</div><img src="'+SLOGAN+'" alt="考えるより感じろ" style="display:block;width:100%;height:auto;border-radius:4px;background:#f8f7f3;">';
     cover.insertAdjacentElement('afterend',section);
   }
 
-  if(!d.getElementById('health-check-ill')){
-    const rows=[...d.querySelectorAll('.row')];
-    const healthRow=rows.find(row=>{
-      const time=row.querySelector('.time')?.textContent.trim();
-      const title=row.querySelector('.detail h3')?.textContent.trim();
-      return time==='8:15' && title==='体調確認';
-    });
-    if(healthRow){
-      const detail=healthRow.querySelector('.detail');
-      const ill=d.createElement('img');
-      ill.id='health-check-ill';
-      ill.className='thumb';
-      ill.src=HEALTH_IMG;
-      ill.alt='体調確認の挿絵';
-      ill.style.width='72px';
-      ill.style.filter='none';
-      ill.style.opacity='1';
-      detail.insertBefore(ill,detail.firstChild);
-      const clear=d.createElement('div');
-      clear.className='clear';
-      detail.appendChild(clear);
-    }
+  const rows=[...d.querySelectorAll('.row')];
+  const healthRow=rows.find(r=>r.querySelector('.time')?.textContent.trim()==='8:15' && r.querySelector('.detail h3')?.textContent.trim()==='体調確認');
+  if(healthRow && !d.getElementById('health-check-ill')){
+    const detail=healthRow.querySelector('.detail');
+    const img=d.createElement('img');
+    img.id='health-check-ill';
+    img.src=HEALTH+'?v=202609131500';
+    img.alt='体調確認の挿絵';
+    img.style.cssText='display:block;width:110px;max-width:42%;height:auto;float:right;margin:0 0 6px 10px;border-radius:4px;filter:none;opacity:1;';
+    detail.insertBefore(img,detail.firstChild);
+    const clear=d.createElement('div');
+    clear.id='health-check-clear';
+    clear.style.clear='both';
+    detail.appendChild(clear);
   }
-
-  return !!d.getElementById('slogan') && !!d.getElementById('health-check-ill');
 }
 
 frame.addEventListener('load',()=>{
-  const d=frame.contentDocument;
-  if(!d) return;
-  const observer=new MutationObserver(()=>insertExtras());
-  observer.observe(d.documentElement,{childList:true,subtree:true});
-  insertExtras();
-  const timer=setInterval(()=>{
-    if(insertExtras()) clearInterval(timer);
-  },100);
-  setTimeout(()=>clearInterval(timer),15000);
+  ensureExtras();
+  const timer=setInterval(ensureExtras,250);
+  setTimeout(()=>clearInterval(timer),30000);
 });
 </script>
 </body>
