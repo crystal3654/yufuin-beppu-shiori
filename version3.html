@@ -24,37 +24,51 @@ html,body{margin:0;background:#e9ecef;color:#26323d;font-family:-apple-system,Bl
   };
 
   const note=doc.querySelector('.cover-bottom .note');
-  if(note) note.innerHTML+=' <br><span style="color:#8a6a3b;font-weight:700">※本しおりは概ね真面目に作成されています。</span>';
+  if(note) note.innerHTML='行程は現地の状況により変更する場合があります。<br>夕食の一部予定は当日の協議により決定します。<br><span style="color:#8a6a3b;font-weight:700">※本しおりは概ね真面目に作成されています。</span>';
 
-  addSub('#day1','8:10',0,'※旅行当日の朝としては、かなり人間的な起床時刻。');
+  const d1summary=doc.querySelector('#day1 .summary');
+  if(d1summary) d1summary.textContent='起床後に身支度を整え、午後より湯布院へ移動。夕方に宿へ到着予定。なお、開始5分で一度戦力低下が見込まれる。';
+
+  addSub('#day1','8:10',0,'※旅行当日の朝としては、かなり人間的な起床時刻。起床確認は自己申告制。');
   addSub('#day1','8:15',0,'※この5分後、顔が濡れたことによる戦力低下が確認される見込み。');
   addSub('#day1','8:15',1,'※通称「顔が濡れて力が出ない」。仕様のため、回復を待つ。');
   addSub('#day1','14:00',0,'※旅行らしい写真を最低1枚確保すること。後日「何しに行ったっけ」を防止する。');
   addSub('#day1','16:00頃',0,'※忘れ物ゼロを目指す。目指すだけなら無料。');
   addSub('#day1','17:00',0,'※ここから先は各自の良識に委ねる。良識の持参を強く推奨。');
-  addSub('#day1','23:30',0,'※先生はいない。だからこそ自律が試される。たぶん。');
+  addSub('#day1','23:30',0,'※先生はいない。だからこそ自律が試される。たぶん。目標時刻であり保証時刻ではない。');
 
-  addSub('#day2','8:00',0,'※二度寝は自己責任。「あと5分」は時間として信用しない。');
+  const d2summary=doc.querySelector('#day2 .summary');
+  if(d2summary) d2summary.textContent='別府市内で昼食後、ラクテンチへ。夕食は当日の状況を見て決定する。午後は体力と判断力の残存量に注意。';
+
+  addSub('#day2','8:00',0,'※二度寝は自己責任。ただし9:30出発は連帯責任。「あと5分」は時間として信用しない。');
   addSub('#day2','9:30',0,'※この時刻に全員が車内にいれば、かなり順調。');
   addSub('#day2','11:00',0,'※「家でも作れる」等の発言は慎むこと。現地補正も味の一部である。');
+  addSub('#day2','12:30',0,'※満腹度にかかわらず、時刻は進む。');
   addSub('#day2','13:00',0,'想定推移：楽しむ → はしゃぐ → 疲れる → 老いを感じる。翌日の筋肉痛は各自負担。');
-  addSub('#day2','16:00',0,'※体力ゲージを確認し、無理のない撤収を行う。');
+  addSub('#day2','16:00',0,'※体力ゲージと意思決定能力を確認し、無理のない撤収を行う。');
+  addSub('#day2','21:00頃',0,'※無事帰宅した者を勝者とする。財布・スマホ・鍵の生存確認まで実施。');
 
+  const dinnerTitle=doc.querySelector('.dinner-title');
+  if(dinnerTitle) dinnerTitle.textContent='16:30〜17:00　夕食選定会議（現地にて決定）';
   const dinnerP=doc.querySelector('.dinner-body > p');
-  if(dinnerP) dinnerP.innerHTML+=' <br><b style="color:#18324a">正式名称：現地緊急胃袋会議</b>';
+  if(dinnerP) dinnerP.innerHTML='当日の空腹度・疲労度・昼食の残存状況を確認し、全員で協議のうえ決定する。<br><b style="color:#18324a">正式名称：現地緊急胃袋会議</b>';
   const options=[...doc.querySelectorAll('.option')];
   const tired=options.find(x=>x.textContent.includes('全員疲弊'));
   if(tired) tired.innerHTML='<b>全員疲弊</b>コンビニも正式候補。敗北ではなく戦略的撤退。';
 
+  const pack=[...doc.querySelectorAll('.pack span')];
+  const common=pack.find(x=>x.textContent.trim()==='良識');
+  if(common) common.textContent='良識（各自1点）';
+
   const rules=[...doc.querySelectorAll('.rule-list li')];
-  if(rules[0]) rules[0].innerHTML='<b>食事希望：</b>「何でもいい」と回答した後に全候補を却下しないこと。これは重大なマナー違反とする。';
+  if(rules[0]) rules[0].innerHTML='<b>食事希望：</b>「何でもいい」と回答した後に全候補を却下しないこと。「何でもいい」は議決権の一部放棄とみなす。';
   if(rules[1]) rules[1].innerHTML='<b>車内：</b>運転手への文句は原則禁止。寝る場合は一度「ありがとう」と伝えること。寝言は不問。';
-  if(rules[2]) rules[2].innerHTML='<b>記録：</b>後で見返して行程が判別できる程度には写真を残すこと。食べ物だけのアルバムにしない。';
-  if(rules[3]) rules[3].innerHTML='<b>予定変更：</b>未定・変更も含めて旅行として処理すること。予定通りだけが正義ではない。';
+  if(rules[2]) rules[2].innerHTML='<b>記録：</b>後で見返して行程が判別できる程度には写真を残すこと。食べ物だけでアルバムを完結させない。';
+  if(rules[3]) rules[3].innerHTML='<b>予定変更：</b>未定・変更も含めて旅行として処理すること。揉めた場合は「まあ旅行なので」で再協議する。';
 
   const footer=doc.querySelector('.footer .small');
-  if(footer) footer.innerHTML='予定通りに進まなくても、それをネタにできたら概ね成功。<br>無事帰宅した者を勝者とする。';
-  const ver=doc.querySelector('.version'); if(ver) ver.textContent='VERSION 3 / SERIOUS LOOK + DRY HUMOR';
+  if(footer) footer.innerHTML='しおり通りなら優秀。予定通りに進まなくても、それをネタにできたら概ね成功。<br>最終目標：全員、無事に帰る。';
+  const ver=doc.querySelector('.version'); if(ver) ver.textContent='VERSION 3.1 / SERIOUS LOOK + DRY HUMOR';
 
   doc.querySelectorAll('script').forEach(s=>s.remove());
   document.head.innerHTML=doc.head.innerHTML;
