@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>修学旅行のしおり｜湯布院・別府</title>
+<style>
+html,body{margin:0;background:#e9ecef;color:#26323d;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif}body:before{content:"しおりを読み込み中…";display:block;padding:40px 20px;text-align:center;color:#66727c;font-size:13px}
+</style>
+</head>
+<body>
+<script>
+(async()=>{
+  const html=await (await fetch('version2.html',{cache:'no-store'})).text();
+  const doc=new DOMParser().parseFromString(html,'text/html');
+
+  const addSub=(section,time,index,text)=>{
+    const rows=[...doc.querySelectorAll(`${section} .row`)].filter(r=>r.querySelector('.time')?.textContent.trim()===time);
+    const row=rows[index||0]; if(!row) return;
+    const detail=row.querySelector('.detail'); if(!detail) return;
+    let sub=detail.querySelector('.subtle');
+    if(!sub){sub=doc.createElement('div');sub.className='subtle';detail.appendChild(sub);}
+    sub.textContent=text;
+  };
+
+  const note=doc.querySelector('.cover-bottom .note');
+  if(note) note.innerHTML+=' <br><span style="color:#8a6a3b;font-weight:700">※本しおりは概ね真面目に作成されています。</span>';
+
+  addSub('#day1','8:10',0,'※旅行当日の朝としては、かなり人間的な起床時刻。');
+  addSub('#day1','8:15',0,'※この5分後、顔が濡れたことによる戦力低下が確認される見込み。');
+  addSub('#day1','8:15',1,'※通称「顔が濡れて力が出ない」。仕様のため、回復を待つ。');
+  addSub('#day1','14:00',0,'※旅行らしい写真を最低1枚確保すること。後日「何しに行ったっけ」を防止する。');
+  addSub('#day1','16:00頃',0,'※忘れ物ゼロを目指す。目指すだけなら無料。');
+  addSub('#day1','17:00',0,'※ここから先は各自の良識に委ねる。良識の持参を強く推奨。');
+  addSub('#day1','23:30',0,'※先生はいない。だからこそ自律が試される。たぶん。');
+
+  addSub('#day2','8:00',0,'※二度寝は自己責任。「あと5分」は時間として信用しない。');
+  addSub('#day2','9:30',0,'※この時刻に全員が車内にいれば、かなり順調。');
+  addSub('#day2','11:00',0,'※「家でも作れる」等の発言は慎むこと。現地補正も味の一部である。');
+  addSub('#day2','13:00',0,'想定推移：楽しむ → はしゃぐ → 疲れる → 老いを感じる。翌日の筋肉痛は各自負担。');
+  addSub('#day2','16:00',0,'※体力ゲージを確認し、無理のない撤収を行う。');
+
+  const dinnerP=doc.querySelector('.dinner-body > p');
+  if(dinnerP) dinnerP.innerHTML+=' <br><b style="color:#18324a">正式名称：現地緊急胃袋会議</b>';
+  const options=[...doc.querySelectorAll('.option')];
+  const tired=options.find(x=>x.textContent.includes('全員疲弊'));
+  if(tired) tired.innerHTML='<b>全員疲弊</b>コンビニも正式候補。敗北ではなく戦略的撤退。';
+
+  const rules=[...doc.querySelectorAll('.rule-list li')];
+  if(rules[0]) rules[0].innerHTML='<b>食事希望：</b>「何でもいい」と回答した後に全候補を却下しないこと。これは重大なマナー違反とする。';
+  if(rules[1]) rules[1].innerHTML='<b>車内：</b>運転手への文句は原則禁止。寝る場合は一度「ありがとう」と伝えること。寝言は不問。';
+  if(rules[2]) rules[2].innerHTML='<b>記録：</b>後で見返して行程が判別できる程度には写真を残すこと。食べ物だけのアルバムにしない。';
+  if(rules[3]) rules[3].innerHTML='<b>予定変更：</b>未定・変更も含めて旅行として処理すること。予定通りだけが正義ではない。';
+
+  const footer=doc.querySelector('.footer .small');
+  if(footer) footer.innerHTML='予定通りに進まなくても、それをネタにできたら概ね成功。<br>無事帰宅した者を勝者とする。';
+  const ver=doc.querySelector('.version'); if(ver) ver.textContent='VERSION 3 / SERIOUS LOOK + DRY HUMOR';
+
+  doc.querySelectorAll('script').forEach(s=>s.remove());
+  document.head.innerHTML=doc.head.innerHTML;
+  document.body.innerHTML=doc.body.innerHTML;
+
+  const names=['group_trip','excited','travel_guide','happy_man','discussion'];
+  const ill={};
+  await Promise.all(names.map(async n=>{
+    const b64=(await (await fetch(`assets/${n}.b64`)).text()).trim();
+    ill[n]=`data:image/webp;base64,${b64}`;
+  }));
+  document.querySelectorAll('img[data-ill]').forEach(img=>{img.src=ill[img.dataset.ill]||'';});
+})();
+</script>
+</body>
+</html>
