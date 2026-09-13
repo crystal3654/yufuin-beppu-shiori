@@ -26,6 +26,13 @@ function ensureExtras(){
     cover.insertAdjacentElement('afterend',section);
   }
 
+  const purpose=d.getElementById('purpose');
+  if(purpose && !purpose.dataset.shortened){
+    const ps=[...purpose.querySelectorAll(':scope > p')];
+    [5,7,8,9].forEach(i=>{ if(ps[i]) ps[i].remove(); });
+    purpose.dataset.shortened='true';
+  }
+
   const rows=[...d.querySelectorAll('.row')];
   const healthRow=rows.find(r=>r.querySelector('.time')?.textContent.trim()==='8:15' && r.querySelector('.detail h3')?.textContent.trim()==='体調確認');
   if(healthRow && !d.getElementById('health-check-ill')){
