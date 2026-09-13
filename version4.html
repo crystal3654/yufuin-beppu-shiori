@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>修学旅行のしおり｜湯布院・別府</title>
+<style>html,body,iframe{margin:0;width:100%;height:100%;border:0;background:#e9ecef}iframe{display:block}</style>
+</head>
+<body>
+<iframe id="book" src="version3-latest.html?v=202609131321" title="修学旅行のしおり"></iframe>
+<script>
+const frame=document.getElementById('book');
+frame.addEventListener('load',()=>{
+  const d=frame.contentDocument;
+  if(!d || d.getElementById('slogan')) return;
+  const cover=d.querySelector('.cover');
+  if(!cover) return;
+  const section=d.createElement('section');
+  section.className='sheet';
+  section.id='slogan';
+  section.innerHTML='<img src="assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png" alt="考えるより感じろ" style="display:block;width:100%;height:auto;border-radius:4px;">';
+  cover.insertAdjacentElement('afterend',section);
+});
+</script>
+</body>
+</html>
