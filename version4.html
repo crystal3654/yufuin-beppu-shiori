@@ -7,19 +7,25 @@
 <style>html,body,iframe{margin:0;width:100%;height:100%;border:0;background:#e9ecef}iframe{display:block}</style>
 </head>
 <body>
-<iframe id="book" src="version3-latest.html?v=202609131321" title="修学旅行のしおり"></iframe>
+<iframe id="book" src="version3-latest.html?v=202609131330" title="修学旅行のしおり"></iframe>
 <script>
 const frame=document.getElementById('book');
 frame.addEventListener('load',()=>{
-  const d=frame.contentDocument;
-  if(!d || d.getElementById('slogan')) return;
-  const cover=d.querySelector('.cover');
-  if(!cover) return;
-  const section=d.createElement('section');
-  section.className='sheet';
-  section.id='slogan';
-  section.innerHTML='<img src="assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png" alt="考えるより感じろ" style="display:block;width:100%;height:auto;border-radius:4px;">';
-  cover.insertAdjacentElement('afterend',section);
+  let tries=0;
+  const timer=setInterval(()=>{
+    tries++;
+    const d=frame.contentDocument;
+    if(!d){ if(tries>100) clearInterval(timer); return; }
+    if(d.getElementById('slogan')){ clearInterval(timer); return; }
+    const cover=d.querySelector('.cover');
+    if(!cover){ if(tries>100) clearInterval(timer); return; }
+    const section=d.createElement('section');
+    section.className='sheet';
+    section.id='slogan';
+    section.innerHTML='<img src="assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png?v=202609131330" alt="考えるより感じろ" style="display:block;width:100%;height:auto;border-radius:4px;">';
+    cover.insertAdjacentElement('afterend',section);
+    clearInterval(timer);
+  },100);
 });
 </script>
 </body>
