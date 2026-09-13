@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#18324a">
+<title>修学旅行のしおり｜湯布院・別府</title>
+<style>
+:root{
+  --navy:#18324a;
+  --navy2:#274b69;
+  --ink:#26323d;
+  --muted:#6a7783;
+  --paper:#fbfaf6;
+  --white:#fff;
+  --line:#d7dde2;
+  --soft:#f0f3f5;
+  --accent:#a77c3d;
+  --danger:#8b4b4b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#e9ecef}
+body{margin:0;color:var(--ink);background:#e9ecef;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;font-weight:500;line-height:1.65;overflow-wrap:anywhere}
+a{color:inherit}img{display:block;max-width:100%;height:auto}
+.shell{width:min(100%,640px);margin:0 auto;padding:0 10px calc(34px + env(safe-area-inset-bottom))}
+.cover{margin:0 -10px 12px;min-height:58svh;background:var(--paper);border-bottom:7px solid var(--navy);padding:38px 24px 28px;display:flex;flex-direction:column;justify-content:space-between}
+.cover-top{border-top:1px solid var(--navy);padding-top:10px;font-size:11px;letter-spacing:.18em;color:var(--navy);font-weight:800}
+.cover h1{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:clamp(40px,12vw,62px);line-height:1.08;letter-spacing:.08em;margin:26px 0 12px;color:var(--navy);font-weight:700}
+.cover .place{font-size:15px;letter-spacing:.22em;color:#4a5864;font-weight:700;margin-bottom:28px}
+.cover-rule{height:1px;background:var(--navy);margin:0 0 18px}
+.cover-meta{display:grid;grid-template-columns:88px 1fr;gap:8px 12px;font-size:13px;max-width:420px}.cover-meta dt{font-weight:800;color:var(--navy)}.cover-meta dd{margin:0}
+.cover-bottom{margin-top:34px;display:flex;justify-content:space-between;align-items:end;gap:20px}.cover-bottom .note{font-size:11px;color:#6c757d;max-width:25em}.cover-bottom img{width:82px;filter:grayscale(.25) saturate(.55);opacity:.82}
+.nav{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#bcc5cc;margin:0 -10px 12px;border-bottom:1px solid #aeb8bf}.nav a{text-decoration:none;text-align:center;background:rgba(24,50,74,.97);color:white;padding:11px 4px;font-size:12px;font-weight:800;letter-spacing:.05em}
+.sheet{background:var(--paper);border:1px solid #d6dadd;border-radius:5px;padding:20px 16px;margin-bottom:12px;box-shadow:0 5px 15px rgba(25,40,52,.06)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:14px}.head h2{margin:0;color:var(--navy);font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:25px;letter-spacing:.06em}.head .area{font-size:11px;color:#66727c;text-align:right;white-space:nowrap}
+.summary{font-size:12px;color:#596671;background:#f3f4f2;border-left:4px solid var(--navy);padding:9px 10px;margin-bottom:14px}
+.schedule{display:grid;border-top:1px solid var(--line)}.row{display:grid;grid-template-columns:70px minmax(0,1fr);border-bottom:1px solid var(--line);min-width:0}.time{padding:13px 9px 12px 0;color:var(--navy);font-weight:850;font-size:15px;white-space:nowrap;text-align:right}.detail{border-left:1px solid var(--line);padding:11px 0 11px 13px;min-width:0}.detail h3{font-size:15px;line-height:1.35;margin:0 0 3px;color:#1d2933;font-weight:800}.detail p{font-size:12px;line-height:1.62;margin:0;color:#5e6973}.detail .subtle{font-size:11px;color:#8a6a3b;margin-top:4px;font-weight:700}.thumb{width:54px;float:right;margin:0 0 5px 8px;filter:grayscale(.12) saturate(.6);opacity:.88}.clear{clear:both}
+.notice{margin:14px 0 2px;border:1px solid #c9ced2;background:#fff;padding:12px 13px}.notice .label{display:inline-block;color:var(--navy);font-weight:850;font-size:11px;letter-spacing:.08em;margin-bottom:4px}.notice strong{display:block;font-size:14px;line-height:1.5;color:#303b44}.notice p{font-size:11.5px;color:#69747d;margin:4px 0 0}
+.dinner{border:1px solid #c8cdd1;margin-top:14px;background:#f8f8f6}.dinner-title{background:var(--navy);color:#fff;padding:8px 11px;font-size:13px;font-weight:850;letter-spacing:.05em}.dinner-body{padding:11px 12px}.dinner-body p{margin:0 0 8px;font-size:12px;color:#56636d}.options{display:grid;grid-template-columns:1fr 1fr;gap:7px}.option{border:1px solid #d4d8db;background:#fff;padding:8px 9px;font-size:11.5px;line-height:1.45}.option b{display:block;color:var(--navy);font-size:11px;margin-bottom:2px}
+.rules-title{color:var(--navy);font-weight:850;font-size:13px;letter-spacing:.06em;margin:0 0 8px}.pack{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#d9dee2;border:1px solid #d9dee2;margin-bottom:16px}.pack span{background:#fff;padding:8px 10px;font-size:12px}.rule-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}.rule-list li{padding:10px 2px;border-bottom:1px solid var(--line);font-size:12px;color:#53606a}.rule-list b{color:#273540}.small-ill{width:80px;margin:14px auto 4px;filter:grayscale(.25) saturate(.6);opacity:.75}
+.footer{background:var(--navy);color:#fff;margin:0 -10px;padding:24px 22px 28px;text-align:center}.footer .big{font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:21px;letter-spacing:.06em;margin-bottom:6px}.footer .small{font-size:11px;opacity:.8}.version{font-size:9px;text-align:center;color:#88929a;padding:8px 0 0;letter-spacing:.12em}
+@media(max-width:370px){.cover{padding-left:19px;padding-right:19px}.sheet{padding:18px 13px}.row{grid-template-columns:62px minmax(0,1fr)}.time{font-size:14px}.options{grid-template-columns:1fr}.pack{grid-template-columns:1fr}.head h2{font-size:22px}.cover-meta{grid-template-columns:76px 1fr}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <section class="cover" id="top">
+    <div>
+      <div class="cover-top">2026 SCHOOL TRIP / YUFUIN・BEPPU</div>
+      <h1>修学旅行<br>のしおり</h1>
+      <div class="place">湯布院・別府　1泊2日</div>
+      <div class="cover-rule"></div>
+      <dl class="cover-meta">
+        <dt>第1日</dt><dd>湯布院方面・宿泊</dd>
+        <dt>第2日</dt><dd>別府方面・ラクテンチ</dd>
+        <dt>基本方針</dt><dd>安全第一・時間厳守・無理はしない</dd>
+      </dl>
+    </div>
+    <div class="cover-bottom">
+      <div class="note">行程は現地の状況により変更する場合があります。<br>予定変更も含め、最終的には「まあ旅行なので」で処理します。</div>
+      <img data-ill="travel_guide" alt="旅行案内">
+    </div>
+  </section>
+
+  <nav class="nav" aria-label="ページ内ナビ"><a href="#day1">第1日</a><a href="#day2">第2日</a><a href="#rules">持ち物</a></nav>
+
+  <section class="sheet" id="day1">
+    <div class="head"><h2>第1日</h2><div class="area">湯布院方面<br>起床 8:10 ／ 消灯 23:30</div></div>
+    <div class="summary">起床後に身支度を整え、午後より湯布院へ移動。夕方に宿へ到着予定。なお、開始5分で一度戦闘不能となる見込み。</div>
+    <div class="schedule">
+      <div class="row"><div class="time">8:10</div><div class="detail"><img class="thumb" data-ill="happy_man" alt="起床"><h3>起床</h3><p>各自身支度を開始する。</p><div class="subtle">※旅行当日の朝としては、やや余裕のある起床時刻。起床確認は自己申告制。</div><div class="clear"></div></div></div>
+      <div class="row"><div class="time">8:15</div><div class="detail"><h3>洗顔・身支度</h3><p>外出に備えて準備を整える。</p><div class="subtle">※この直後、予期せぬ能力低下が発生する場合あり。</div></div></div>
+      <div class="row"><div class="time">8:15</div><div class="detail"><h3>体調確認</h3><p>洗顔直後、一時的に活動能力が低下する可能性あり。</p><div class="subtle">※通称「顔が濡れて力が出ない」。回復を待つ。</div></div></div>
+      <div class="row"><div class="time">14:00</div><div class="detail"><img class="thumb" data-ill="travel_guide" alt="観光"><h3>湯布院 フローラルビレッジ着</h3><p>散策・写真撮影等。集合時刻を確認すること。</p><div class="subtle">※旅行らしい写真を最低1枚確保すること。後日「どこ行ったっけ？」を防止する。</div><div class="clear"></div></div></div>
+      <div class="row"><div class="time">16:00頃</div><div class="detail"><img class="thumb" data-ill="group_trip" alt="移動"><h3>出発</h3><p>宿泊地へ移動。</p><div class="subtle">※忘れ物は「次回来る理由」として処理しないこと。</div><div class="clear"></div></div></div>
+      <div class="row"><div class="time">17:00</div><div class="detail"><h3>ホッショウクラブ着・宿泊</h3><p>チェックイン後は各自休憩。施設内では節度をもって行動する。</p><div class="subtle">※ここから先は各自の良識に委ねる。なお「良識」の定義は各自で異なる。</div></div></div>
+      <div class="row"><div class="time">23:30</div><div class="detail"><h3>消灯（目標）</h3><p>翌日の行程に備えて就寝。</p><div class="subtle">※先生はいないため、達成可否は本人たち次第。目標値であり保証値ではない。</div></div></div>
+    </div>
+  </section>
+
+  <section class="sheet" id="day2">
+    <div class="head"><h2>第2日</h2><div class="area">別府方面<br>起床 8:00 ／ 出発 9:30</div></div>
+    <div class="summary">別府市内で昼食後、ラクテンチへ。夕食は当日の状況を見て決定する。体力と判断力の残存量に注意。</div>
+    <div class="schedule">
+      <div class="row"><div class="time">8:00</div><div class="detail"><img class="thumb" data-ill="happy_man" alt="起床"><h3>起床</h3><p>9:30出発に向けて身支度。</p><div class="subtle">※二度寝は自己責任。ただし9:30出発は連帯責任。</div><div class="clear"></div></div></div>
+      <div class="row"><div class="time">9:30</div><div class="detail"><img class="thumb" data-ill="group_trip" alt="出発"><h3>出発</h3><p>別府方面へ移動。</p><div class="subtle">※「あと5分」は9:30以降、原則受理しない。</div><div class="clear"></div></div></div>
+      <div class="row"><div class="time">11:00</div><div class="detail"><h3>レストラン東洋軒・昼食</h3><p>大分名物・とり天を予定。本日の必修科目。</p><div class="subtle">※「家でも作れる」等の発言は慎むこと。現地で食べることに意義がある。</div></div></div>
+      <div class="row"><div class="time">12:30</div><div class="detail"><h3>出発</h3><p>ラクテンチへ移動。</p><div class="subtle">※満腹度にかかわらず時刻は進む。</div></div></div>
+      <div class="row"><div class="time">13:00</div><div class="detail"><img class="thumb" data-ill="excited" alt="遊園地"><h3>ケーブルラクテンチ</h3><p>園内行動。体調と体力を考慮しながら楽しむ。</p><div class="subtle">想定推移：楽しむ → はしゃぐ → 疲れる → 老いを感じる。回復手段は未確認。</div><div class="clear"></div></div></div>
+      <div class="row"><div class="time">16:00</div><div class="detail"><h3>出発</h3><p>帰路へ。夕食場所を協議する。</p><div class="subtle">※この時点で全員の意思決定能力が残っていることが望ましい。</div></div></div>
+    </div>
+
+    <div class="dinner">
+      <div class="dinner-title">16:30〜17:00　夕食選定会議（現地にて決定）</div>
+      <div class="dinner-body">
+        <p>当日の空腹度・疲労度・昼食の残存状況を確認し、全員で協議のうえ決定する。通称「現地緊急胃袋会議」。</p>
+        <div class="options">
+          <div class="option"><b>空腹度：高</b>ガッツリ系を優先</div>
+          <div class="option"><b>空腹度：標準</b>現地で良さそうな店</div>
+          <div class="option"><b>昼食が残存</b>軽めの食事</div>
+          <div class="option"><b>全員疲弊</b>コンビニも正式候補</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule" style="margin-top:14px">
+      <div class="row"><div class="time">21:00頃</div><div class="detail"><h3>渡辺家着</h3><p>到着をもって全行程終了。</p><div class="subtle">※無事帰宅した者を勝者とする。財布・スマホ・鍵の生存確認まで実施。</div></div></div>
+    </div>
+  </section>
+
+  <section class="sheet" id="rules">
+    <div class="head"><h2>持ち物・注意事項</h2><div class="area">必ず確認すること</div></div>
+    <p class="rules-title">持ち物</p>
+    <div class="pack"><span>財布</span><span>スマートフォン</span><span>充電器</span><span>着替え</span><span>歯ブラシ</span><span>良識</span><span>体力</span><span>「まあ何とかなるやろ」の精神</span></div>
+    <p class="rules-title">行動上の注意</p>
+    <ul class="rule-list">
+      <li><b>食事希望：</b>「何でもいい」と回答した後に全候補を却下しないこと。「何でもいい」は議決権の一部放棄とみなす。</li>
+      <li><b>車内：</b>運転手への文句は原則禁止。寝る場合は一度「ありがとう」と伝えること。起きた直後の「もう着いた？」は可。</li>
+      <li><b>記録：</b>後で見返して行程が判別できる程度には写真を残すこと。食べ物だけでアルバムを完結させない。</li>
+      <li><b>予定変更：</b>未定・変更も含めて旅行として処理すること。揉めた場合は「まあ旅行なので」で再協議する。</li>
+    </ul>
+    <img class="small-ill" data-ill="discussion" alt="話し合い">
+  </section>
+
+  <footer class="footer">
+    <div class="big">安全に、楽しく、無事に帰る。</div>
+    <div class="small">しおり通りなら優秀。予定通りに進まなくても、それをネタにできたら概ね成功。</div>
+  </footer>
+  <div class="version">VERSION 2.1 / SERIOUS LOOK + QUIET HUMOR</div>
+</main>
+<script>
+(async()=>{
+  const names=["group_trip","excited","travel_guide","happy_man","discussion"];
+  const ill={};
+  await Promise.all(names.map(async n=>{
+    const b64=(await (await fetch(`assets/${n}.b64`)).text()).trim();
+    ill[n]=`data:image/webp;base64,${b64}`;
+  }));
+  document.querySelectorAll('img[data-ill]').forEach(img=>{img.src=ill[img.dataset.ill]||'';});
+})();
+</script>
+</body>
+</html>
