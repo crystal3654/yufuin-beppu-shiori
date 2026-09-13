@@ -7,7 +7,7 @@
 <style>html,body,iframe{margin:0;width:100%;height:100%;border:0;background:#e9ecef}iframe{display:block}</style>
 </head>
 <body>
-<iframe id="book" src="version3-latest.html?v=202609131845" title="修学旅行のしおり"></iframe>
+<iframe id="book" src="version3-latest.html?v=202609131900" title="修学旅行のしおり"></iframe>
 <script>
 const frame=document.getElementById('book');
 const SLOGAN='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png';
@@ -35,7 +35,22 @@ function patch(){
     if(wake){ const p=wake.querySelector('p'); if(p) p.textContent='9:30出発に向けて身支度。二度寝した場合は、自力で時間を取り戻すこと。'; }
     const health=rows.find(r=>r.querySelector('.time')?.textContent.trim()==='8:15'&&r.querySelector('h3')?.textContent.trim()==='体調確認');
     if(health&&!d.getElementById('health-check-ill')){
-      const detail=health.querySelector('.detail'); const img=d.createElement('img'); img.id='health-check-ill'; img.src=HEALTH+'?v=202609131845'; img.alt='体調確認の挿絵'; img.style.cssText='display:block;width:110px;max-width:42%;height:auto;float:right;margin:0 0 6px 10px;border-radius:4px;filter:none;opacity:1;'; detail.insertBefore(img,detail.firstChild); const clear=d.createElement('div'); clear.style.clear='both'; detail.appendChild(clear);
+      const detail=health.querySelector('.detail'); const img=d.createElement('img'); img.id='health-check-ill'; img.src=HEALTH+'?v=202609131900'; img.alt='体調確認の挿絵'; img.style.cssText='display:block;width:110px;max-width:42%;height:auto;float:right;margin:0 0 6px 10px;border-radius:4px;filter:none;opacity:1;'; detail.insertBefore(img,detail.firstChild); const clear=d.createElement('div'); clear.style.clear='both'; detail.appendChild(clear);
+    }
+
+    const pack=d.querySelector('.pack');
+    if(pack){
+      const items=[...pack.querySelectorAll('span')];
+      const byText=t=>items.find(x=>x.textContent.trim()===t);
+      const toothbrush=byText('歯ブラシ');
+      const fireworks=byText('花火（黒川・忘れると夜がただの夜）');
+      const ih=byText('IH・鍋（中村・現地の文明担当）');
+      const rice=byText('炊飯器・出汁（渡辺・米と味の生命線）');
+      if(toothbrush&&fireworks&&ih&&rice){
+        toothbrush.insertAdjacentElement('afterend',rice);
+        toothbrush.insertAdjacentElement('afterend',ih);
+        toothbrush.insertAdjacentElement('afterend',fireworks);
+      }
     }
   }catch(e){}
 }
