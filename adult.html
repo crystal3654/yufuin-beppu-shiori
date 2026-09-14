@@ -10,7 +10,7 @@ iframe{display:block}
 </style>
 </head>
 <body>
-<iframe id="book" src="archive/version3-latest.html?v=202609132215" title="修学旅行のしおり"></iframe>
+<iframe id="book" src="archive/version3-latest.html?v=202609142133" title="修学旅行のしおり"></iframe>
 <script>
 const frame=document.getElementById('book');
 const SLOGAN='https://raw.githubusercontent.com/crystal3654/yufuin-beppu-shiori/main/assets/images/FC760586-6327-4D57-96DC-EB1F8C6999F9.png';
@@ -93,6 +93,23 @@ function patch(){
       const clear=d.createElement('div');
       clear.style.clear='both';
       detail.appendChild(clear);
+    }
+
+    const dinnerOptions=d.querySelector('.dinner .options');
+    if(dinnerOptions){
+      const labels=[...dinnerOptions.querySelectorAll('.option b')].map(x=>x.textContent.trim());
+      if(!labels.includes('候補 C')){
+        const c=d.createElement('div');
+        c.className='option';
+        c.innerHTML='<b>候補 C</b>コンビニという名の最終避難所<br><span style="color:#6a7783;font-size:10.5px;">迷ったらだいたい何かある。</span>';
+        dinnerOptions.appendChild(c);
+      }
+      if(!labels.includes('候補 D')){
+        const dOption=d.createElement('div');
+        dOption.className='option';
+        dOption.innerHTML='<b>候補 D</b>なし<br><span style="color:#6a7783;font-size:10.5px;">とり天を信じる。</span>';
+        dinnerOptions.appendChild(dOption);
+      }
     }
 
     const pack=d.querySelector('.pack');
